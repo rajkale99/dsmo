@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2012-2017 The Linux Foundation. All rights reserved.
+ * Copyright (c) 2012-2016 The Linux Foundation. All rights reserved.
+ * Copyright (c) 2017 The LineageOS Project.
  *
  * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
  *
@@ -2871,10 +2872,10 @@ This feature requires the dependent cfg.ini "gRoamPrefer5GHz" set to 1 */
 #define CFG_SAP_PROBE_RESP_OFFLOAD_MAX     (1)
 #define CFG_SAP_PROBE_RESP_OFFLOAD_DEFAULT (1)
 
-#define CFG_SAP_INTERNAL_RESTART_NAME    "gEnableSapInternalRestart"
-#define CFG_SAP_INTERNAL_RESTART_MIN     (0)
-#define CFG_SAP_INTERNAL_RESTART_MAX     (1)
-#define CFG_SAP_INTERNAL_RESTART_DEFAULT (1)
+#define CFG_CH_AVOID_SAP_RESTART_NAME    "sap_ch_avoid_restart"
+#define CFG_CH_AVOID_SAP_RESTART_MIN     (0)
+#define CFG_CH_AVOID_SAP_RESTART_MAX     (1)
+#define CFG_CH_AVOID_SAP_RESTART_DEFAULT (1)
 
 /*--------------------------------------------------------------------------- 
   Type declarations
@@ -3436,13 +3437,14 @@ typedef struct
    uint32_t                    edca_be_aifs;
    v_BOOL_t                    sendMgmtPktViaWQ5;
    v_BOOL_t                    sap_probe_resp_offload;
-   v_BOOL_t                    sap_internal_restart;
+   v_BOOL_t                    sap_restrt_ch_avoid;
 } hdd_config_t;
 
 /*--------------------------------------------------------------------------- 
   Function declarations and documenation
   -------------------------------------------------------------------------*/ 
 VOS_STATUS hdd_parse_config_ini(hdd_context_t *pHddCtx);
+VOS_STATUS hdd_update_mac_config(hdd_context_t *pHddCtx);
 VOS_STATUS hdd_set_sme_config( hdd_context_t *pHddCtx );
 v_BOOL_t hdd_update_config_dat ( hdd_context_t *pHddCtx );
 VOS_STATUS hdd_cfg_get_config(hdd_context_t *pHddCtx, char *pBuf, int buflen);
